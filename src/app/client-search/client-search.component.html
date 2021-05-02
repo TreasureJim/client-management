@@ -1,0 +1,23 @@
+<form>
+  <mat-form-field>
+	  <mat-label>Search</mat-label>
+    <input
+      type="text"
+      matInput
+      [matAutocomplete]="auto"
+      [formControl]="myControl"
+	  #searchBox
+	  id="search-box"
+	  (input)="search(searchBox.value)"
+	  />
+
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFunction">
+      <mat-option
+        *ngFor="let client of filteredClients$ | async"
+        [value]="client"
+      >
+        {{ client.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
