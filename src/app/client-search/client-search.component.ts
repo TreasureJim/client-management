@@ -4,16 +4,18 @@ import { ClientService } from './../services/ClientService.service';
 import { FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, tap, startWith } from 'rxjs/operators';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-client-search',
   templateUrl: './client-search.component.html',
   styleUrls: ['./client-search.component.scss'],
+  animations: [
+
+  ]
 })
 export class ClientSearchComponent implements OnInit {
-  @Output() filterClientEvent = new EventEmitter<Client[]>();
 
-  clients$: Client[];
   filteredClients$: Observable<Client[]>;
 
   myControl = new FormControl();
@@ -21,19 +23,16 @@ export class ClientSearchComponent implements OnInit {
 
   constructor(private clientService: ClientService) {}
   ngOnInit(): void {
-    // Subscribe to client observable
-    this.getClients();
-
     this.filteredClients$ = this.myControl.valueChanges.pipe(
       // shows results even if there isn't anything in search
       // startWith(''),
 
       // wait 100 milliseconds before updating search to make less intensive
-      debounceTime(100),
+      debounceTime(300),
       // dont make new query if search term hasn't changed
       distinctUntilChanged(),
       // Get filtered results
-      map((term: string) => this.clientService.getClients(term) )
+      map( (term: string) => this.clientService.searchClients(term) ) 
     );
   }
 
@@ -41,6 +40,7 @@ export class ClientSearchComponent implements OnInit {
     // Add search term to observable queue
     this.searchTerms.next(term);
   }
+
 
   getClients() {
     this.clientService.getClients().subscribe((clients) => {
