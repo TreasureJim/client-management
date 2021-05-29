@@ -1,7 +1,3 @@
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-} from '@angular/fire/firestore';
 import { Injectable, TemplateRef } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map, tap, filter } from 'rxjs/operators';
@@ -13,7 +9,7 @@ import { Client } from '../data/Client';
 })
 export class ClientService {
   filteredClients$: Observable<Client[]>;
-  filteredClientsRef: AngularFirestoreCollection<Client>;
+  filteredClientsRef: null; //CHANGE THIS
 
   constructor(db: AngularFirestore) {
     this.filteredClientsRef = db.collection<Client>('clients');
