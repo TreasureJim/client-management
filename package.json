@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "concurrently --kill-others-on-fail \"npm run backend\" \"npm run frontend\"", 
     "frontend": "cd frontend && npm start",
-    "backend": "cd backend && nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run backend\" \"npm run frontend\"",
-    "heroku-postbuild": "cd frontend && npm install && npm run build"
+    "backend": "cd backend && node server.js", 
+    "deploy": "cd front-end && ng build --aot -prod -op ../back-end/dist && cd ..", 
+    "postinstall": "cd back-end && npm install"
   },
   "repository": {
     "type": "git",
