@@ -1,4 +1,4 @@
-import { pool } from './pool';
+const pool = require('./pool');
 
 class Model {
 
@@ -9,16 +9,16 @@ class Model {
 	}
 
 	async select(columns, clause) {
+		let query;
 		if (clause !== undefined) {
-			let query = `SELECT ${columns} FROM ${this.table}`;
+			query = `SELECT ${columns} FROM ${this.table} WHERE ${clause}`;
 		}
 		else {
-			let query = `SELECT ${columns};`;
+			query = `SELECT ${columns};`;
 		}
 
-		if (clause) query += clause;
 		return this.pool.query(query);
 	}
 }
 
-export default Model;
+module.exports = Model;

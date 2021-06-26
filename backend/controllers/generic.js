@@ -1,16 +1,19 @@
-import { Model } from "../db/model";
+const Model = require("../db/model");
 
-const genericModel = Model();
+const genericModel = new Model();
 
-export async function time(req, res) {
-	const { name, message } = req.body;
-	
+async function time(req, res) {
 	try {
 		const data = await genericModel.select('NOW()');
-		res.status(200).json({ time: data.rows });
+		res.status(200).json({ time: data.rows[0].now });
 	}
 	catch (err) {
 		console.error(err);
 		res.status(200).json({ time: err.stack });
 	}
 };
+
+
+module.exports = {
+	time
+}

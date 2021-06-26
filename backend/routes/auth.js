@@ -7,7 +7,7 @@ router.post('/register', (req, res) => {
 });
 
 
-const getHashedPassword = (password) => {
+function getHashedPassword (password) {
     const sha256 = cryto.createHash('sha256');
     return sha256.update(password).digest('base64');
 }

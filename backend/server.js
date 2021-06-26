@@ -15,12 +15,9 @@ const API = require('./routes/api');
 app.use('/api', API);
 
 
-app.get('/', (req, res) => {
-	// res.send(path.join(__dirname, '/../frontend/build/index.html'))
-	time = require('./db/pool').time();
-	console.log(typeof(time));
-	res.send(time);
-})
+// app.get('/', (req, res) => {
+// 	res.send(path.join(__dirname, '/../frontend/build/index.html'))
+// })
 
 app.listen(
 	PORT || 5000, 
