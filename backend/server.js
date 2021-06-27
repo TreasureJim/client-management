@@ -11,7 +11,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../frontend/build/index.html')));
 
 // Use API routes from ./routes/api file
-const API = require('./routes/api');
+const API = require('./routes/apiRoute');
 app.use('/api', API);
 
 
