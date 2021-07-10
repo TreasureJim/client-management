@@ -1,8 +1,5 @@
 const path = require('path');
-require('dotenv').config({path: __dirname + '/.env'});
-
 const PORT = process.env.API_PORT;
-
 
 // express api routing init
 const express = require('express');
@@ -14,10 +11,6 @@ app.use(express.static(path.join(__dirname, '../frontend/build/index.html')));
 const API = require('./routes/apiRoute');
 app.use('/api', API);
 
-
-// app.get('/', (req, res) => {
-// 	res.send(path.join(__dirname, '/../frontend/build/index.html'))
-// })
 
 app.listen(
 	PORT || 5000, 
