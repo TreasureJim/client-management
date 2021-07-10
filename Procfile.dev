@@ -1,1 +1,1 @@
-database: cd backend && nodemon server.js
+backend: cd backend && nodemon server.js
