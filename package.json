@@ -4,11 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently --kill-others-on-fail \"npm run backend\" \"npm run frontend\"", 
-    "frontend": "cd frontend && npm start",
+    "start": "\"npm run backend\"", 
     "backend": "cd backend && node server.js", 
-    "deploy": "cd front-end && ng build --aot -prod -op ../back-end/dist && cd ..", 
-    "postinstall": "cd back-end && npm install"
+    "deploy": "cd frontend && ng build --aot -prod -op ../backend/dist && cd ../backend && npm start", 
+    "postinstall": "cd backend && npm install"
   },
   "repository": {
     "type": "git",
