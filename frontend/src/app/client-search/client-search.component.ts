@@ -1,18 +1,14 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Client } from './../data/Client';
-import { ClientService } from './../services/ClientService.service';
+import { ClientService } from '../services/client-service/ClientService.service';
 import { FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, tap, startWith } from 'rxjs/operators';
-import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-client-search',
   templateUrl: './client-search.component.html',
-  styleUrls: ['./client-search.component.scss'],
-  animations: [
-
-  ]
+  styleUrls: ['./client-search.component.scss']
 })
 export class ClientSearchComponent implements OnInit {
 
@@ -32,7 +28,7 @@ export class ClientSearchComponent implements OnInit {
       // dont make new query if search term hasn't changed
       distinctUntilChanged(),
       // Get filtered results
-      map( (term: string) => this.clientService.searchClients(term) ) 
+      map( (term: string) => this.clientService.searchClients(term).subscribe() ) 
     );
   }
 
