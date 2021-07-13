@@ -1,0 +1,6 @@
+{
+    "api": "https://client-management.herokuapp.com/api", 
+    "address": {
+        "client": "/client"
+    }
+}

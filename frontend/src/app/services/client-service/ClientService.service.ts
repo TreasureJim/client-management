@@ -2,6 +2,8 @@ import { Injectable, TemplateRef } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
+import * as apiAddress from '../../api-config.json';
+
 import { Client } from '../../data/Client';
 import { CircleArray } from '../../data/CircularArray';
 
@@ -20,8 +22,9 @@ export class ClientService {
   public getRecentClients() {
     return this.recentClients.array;
   }
-  public getClient(id: number) {
-    this.http.get<Client[]>()
+  public getClient(id: number): Observable<any> {
+    let address = apiAddress.api + apiAddress.address.client;
+    return this.http.get<Client[]>(address);
   }
   
 
